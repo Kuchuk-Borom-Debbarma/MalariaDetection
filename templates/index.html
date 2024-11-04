@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Malaria Detection</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        /* CSS styles omitted for brevity */
+    </style>
+</head>
+<body>
+<h2>MALARIA DETECTION</h2>
+<form id="malaria-detection-form" action="http://localhost:5000/detect" method="POST" enctype="multipart/form-data">
+    <div class="file-upload">
+        <div class="image-upload-wrap">
+            <input class="file-upload-input" type="file" name="file" onchange="readURL(this);" accept="image/*"/>
+            <div class="drag-text">
+                <h3>Drag and drop a file or select add Image</h3>
+            </div>
+        </div>
+        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger('click')">Add Image
+        </button>
+        <div class="file-upload-content">
+            <img class="file-upload-image" src="#" alt="your image"/>
+            <div class="image-title-wrap">
+                <button class="remove-image" type="submit">DETECT</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.image-upload-wrap').hide();
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+                $('.image-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            removeUpload();
+        }
+    }
+</script>
+</body>
+</html>
