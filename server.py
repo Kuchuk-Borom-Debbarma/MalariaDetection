@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 # Load the pre-trained model
-model_path = 'models/basic_cnn.keras'
+model_path = 'models/final_model.keras'
 model = load_model(model_path)
 
 @app.route('/', methods=['GET'])
